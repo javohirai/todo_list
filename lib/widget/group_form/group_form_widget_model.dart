@@ -37,6 +37,6 @@ class GroupFromWidgetProvider extends InheritedWidget {
 
   @override
   bool updateShouldNotify(covariant GroupFromWidgetProvider oldWidget) {
-    return true;
+    return false;
   }
 }
