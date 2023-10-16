@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:todo_list/domain/entity/group.dart';
 import 'package:todo_list/domain/entity/task.dart';
-import 'package:todo_list/widget/tasks/tasks_widget_model.dart';
 
 class TaskFormWidgetModel {
   var taskName = '';

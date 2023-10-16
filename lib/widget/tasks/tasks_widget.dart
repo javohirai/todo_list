@@ -87,6 +87,12 @@ class _GroupListRowWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = TasksWidgetModelProvider.read(context)?.model;
     final task = model?.tasks[indexInList];
+    final currentState = task?.isDone ?? false;
+
+    final icon = currentState ? Icons.done : Icons.portrait;
+    final style =
+        currentState ? TextStyle(decoration: TextDecoration.lineThrough) : null;
+
     return Slidable(
       endActionPane: ActionPane(
         motion: const BehindMotion(),
@@ -100,9 +106,12 @@ class _GroupListRowWidget extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        title: Text(task?.text ?? ''),
-        trailing: const Icon(Icons.chevron_right),
-        onTap: () {},
+        title: Text(
+          task?.text ?? '',
+          style: style,
+        ),
+        trailing: Icon(icon),
+        onTap: () => model?.doneToggle(indexInList),
       ),
     );
   }
