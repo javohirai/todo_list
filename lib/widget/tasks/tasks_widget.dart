@@ -42,6 +42,13 @@ class _TasksWidgetBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final model = TasksWidgetModelProvider.watch(context)?.model;
+    final title = model?.group?.name ?? 'Tasks';
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: Container(),
+    );
   }
 }
