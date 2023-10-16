@@ -26,6 +26,10 @@ class TasksWidgetModel extends ChangeNotifier {
     _groupBox = Hive.openBox<Group>('groups_box');
     _loadGroup();
   }
+
+  void showForm(BuildContext context) {
+    Navigator.of(context).pushNamed('/groups/tasks/form');
+  }
 }
 
 class TasksWidgetModelProvider extends InheritedNotifier {

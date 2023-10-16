@@ -31,7 +31,7 @@ class _GroupsWidgetBody extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () => GroupsWidgetModelProvider.read(context)
             ?.model
-            .openGroupForm(context),
+            .showForm(context),
         child: const Icon(Icons.add),
       ),
     );

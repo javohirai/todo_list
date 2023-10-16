@@ -49,6 +49,10 @@ class _TasksWidgetBody extends StatelessWidget {
         title: Text(title),
       ),
       body: Container(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => model?.showForm(context),
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }

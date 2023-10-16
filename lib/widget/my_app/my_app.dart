@@ -13,9 +13,9 @@ class MyApp extends StatelessWidget {
       title: 'Todo List',
       routes: {
         '/groups': (context) => const GroupsWidget(),
-        '/groups/from': (context) => const GroupFormWidget(),
+        '/groups/form': (context) => const GroupFormWidget(),
         '/groups/tasks': (context) => const TasksWidget(),
-        '/groups/tasks/from': (context) => const TaskFormWidget(),
+        '/groups/tasks/form': (context) => const TaskFormWidget(),
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),

@@ -33,8 +33,8 @@ class GroupsWidgetModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void openGroupForm(BuildContext context) {
-    Navigator.of(context).pushNamed('/groups/from');
+  void showForm(BuildContext context) {
+    Navigator.of(context).pushNamed('/groups/form');
   }
 
   void showTasks(BuildContext context, int groupIndex) async {
