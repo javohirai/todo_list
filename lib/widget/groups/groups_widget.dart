@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class GroupsWidget extends StatelessWidget {
   const GroupsWidget({super.key});
+
+  void _openGroupForm(BuildContext context){
+    Navigator.of(context).pushNamed('/groups/from');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +14,7 @@ class GroupsWidget extends StatelessWidget {
       appBar: AppBar(title: const Text('Todo List')),
       body: const SafeArea(child: _GroupList()),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => _openGroupForm(context),
         child: const Icon(Icons.add),
       ),
     );
@@ -44,11 +49,28 @@ class _GroupListRowWidget extends StatelessWidget {
     required this.indexInList,
   });
 
+  void _doNothing(BuildContext context){
+
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const ListTile(
-      title: Text('Lorem ispum'),
-      trailing: Icon(Icons.chevron_right),
+    return Slidable(
+      endActionPane: ActionPane(
+        motion: const BehindMotion(),
+        children: [
+          SlidableAction(
+            onPressed: _doNothing,
+            backgroundColor: Colors.red,
+            icon: Icons.delete,
+            label: 'Delete',
+          ),
+        ],
+      ),
+      child: const ListTile(
+        title: Text('Lorem ispum'),
+        trailing: Icon(Icons.chevron_right),
+      ),
     );
   }
 }
