@@ -12,6 +12,14 @@ class GroupsWidgetModel extends ChangeNotifier {
     _loadGroups();
   }
 
+  void deleteGroup(int groupIndex) async {
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(GroupAdapter());
+    }
+    final box = await Hive.openBox<Group>('groups_box');
+    await box.deleteAt(groupIndex);
+  }
+
   void _loadGroups() async {
     if (!Hive.isAdapterRegistered(1)) {
       Hive.registerAdapter(GroupAdapter());
