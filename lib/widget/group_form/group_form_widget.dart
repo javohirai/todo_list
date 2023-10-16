@@ -33,7 +33,7 @@ class _GroupFormWidgetBody extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () =>
-            GroupFromWidgetProvider.read(context)?.model.saveGroup(),
+            GroupFromWidgetProvider.read(context)?.model.saveGroup(context),
         child: const Icon(Icons.done),
       ),
     );
@@ -45,10 +45,12 @@ class _GroupFormNameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = GroupFromWidgetProvider.read(context)?.model;
     return TextField(
       autofocus: true,
+      onChanged: (value) => {model?.groupName = value},
       onSubmitted: (value) =>
-          GroupFromWidgetProvider.read(context)?.model.saveGroup(),
+          model?.saveGroup(context),
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
         hintText: 'Group name',

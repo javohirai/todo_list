@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class GroupFormWidgetModel {
-  void saveGroup() {
-    print('hey hey');
+  var groupName = '';
+  void saveGroup(BuildContext context) {
+    print(groupName);
   }
 }
 
