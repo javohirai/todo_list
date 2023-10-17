@@ -3,24 +3,34 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo_list/ui/widget/tasks/tasks_widget_model.dart';
 
 class TasksWidget extends StatefulWidget {
-  const TasksWidget({super.key});
+  final groupKey;
+  const TasksWidget({
+    super.key,
+    required this.groupKey,
+  });
 
   @override
   TasksWidgetState createState() => TasksWidgetState();
 }
 
 class TasksWidgetState extends State<TasksWidget> {
-  TasksWidgetModel? _model;
+  late final TasksWidgetModel _model;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    if (_model == null) {
-      int groupKey = ModalRoute.of(context)?.settings.arguments as int;
-      _model = TasksWidgetModel(groupKey: groupKey);
-    }
+  void initState() {
+    super.initState();
+    _model = TasksWidgetModel(groupKey: widget.groupKey);
   }
+
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+
+  //   if (_model == null) {
+  //     int groupKey = ModalRoute.of(context)?.settings.arguments as int;
+  //     _model = TasksWidgetModel(groupKey: groupKey);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

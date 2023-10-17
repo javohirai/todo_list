@@ -1,4 +1,3 @@
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_list/domain/entity/group.dart';
@@ -47,6 +46,8 @@ class TasksWidgetModel extends ChangeNotifier {
     await Hive.openBox<Task>('tasks_box');
     _group?.tasks?[taskIndex].isDone = !currentState;
     _group?.save();
+    notifyListeners();
+
   }
 
   void _init() {

@@ -5,10 +5,10 @@ import 'package:todo_list/ui/widget/task_form/task_form_widget.dart';
 import 'package:todo_list/ui/widget/tasks/tasks_widget.dart';
 
 abstract class MainNavigationRouteNames {
-  static String groups = '/groups';
-  static String groupForm = '/groups/form';
-  static String tasks = '/groups/tasks';
-  static String taskForm = '/groups/tasks/form';
+  static const groups = 'groups';
+  static const groupForm = 'groups/form';
+  static const tasks = 'groups/tasks';
+  static const taskForm = 'groups/tasks/form';
 }
 
 class MainNavigation {
@@ -16,7 +16,24 @@ class MainNavigation {
   final routes = <String, Widget Function(BuildContext)>{
     MainNavigationRouteNames.groups: (context) => const GroupsWidget(),
     MainNavigationRouteNames.groupForm: (context) => const GroupFormWidget(),
-    MainNavigationRouteNames.tasks: (context) => const TasksWidget(),
-    MainNavigationRouteNames.taskForm: (context) => const TaskFormWidget(),
   };
+
+  Route<Object>? onGenerateRoute(RouteSettings setting) {
+    switch (setting.name) {
+      case MainNavigationRouteNames.tasks:
+        final groupKey = setting.arguments as int;
+        return MaterialPageRoute(
+            builder: (context) => TasksWidget(groupKey: groupKey));
+      case MainNavigationRouteNames.taskForm:
+        final groupKey = setting.arguments as int;
+        return MaterialPageRoute(
+            builder: (context) => TaskFormWidget(groupKey: groupKey));
+
+      default:
+        final widget = Text('Navigation error!!');
+        return MaterialPageRoute(
+          builder: (context) => widget,
+        );
+    }
+  }
 }
