@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_list/domain/data_provider/box_manager.dart';
@@ -8,6 +9,7 @@ import 'package:todo_list/ui/widget/tasks/tasks_widget.dart';
 class TasksWidgetModel extends ChangeNotifier {
   TaskWidgetConfiguration configuration;
   late Future<Box<Task>> _box;
+  ValueListenable<Object>? _listenable;
 
   var _tasks = <Task>[];
 
@@ -24,7 +26,8 @@ class TasksWidgetModel extends ChangeNotifier {
   void _initTasks() async {
     final box = await _box;
     _readTasks();
-    box.listenable().addListener(_readTasks);
+    _listenable = box.listenable();
+    _listenable?.addListener(_readTasks);
   }
 
   void deleteTask(int taskIndex) async {
@@ -34,6 +37,7 @@ class TasksWidgetModel extends ChangeNotifier {
   void doneToggle(int taskIndex) async {
     final task = (await _box).getAt(taskIndex);
     task?.isDone = !task.isDone;
+    await task?.save();
   }
 
   void _init() {
@@ -42,7 +46,15 @@ class TasksWidgetModel extends ChangeNotifier {
   }
 
   void showForm(BuildContext context) {
-    Navigator.of(context).pushNamed(MainNavigationRouteNames.taskForm, arguments: configuration.groupKey);
+    Navigator.of(context).pushNamed(MainNavigationRouteNames.taskForm,
+        arguments: configuration.groupKey);
+  }
+
+  @override
+  void dispose() async {
+    _listenable?.removeListener(_readTasks);
+    await BoxManager.instance.closeBox((await _box));
+    super.dispose();
   }
 }
 
