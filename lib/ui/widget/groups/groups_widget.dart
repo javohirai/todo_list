@@ -58,7 +58,6 @@ class _GroupList extends StatelessWidget {
 class _GroupListRowWidget extends StatelessWidget {
   final int indexInList;
   const _GroupListRowWidget({
-    super.key,
     required this.indexInList,
   });
 

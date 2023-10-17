@@ -30,7 +30,7 @@ class MainNavigation {
             builder: (context) => TaskFormWidget(groupKey: groupKey));
 
       default:
-        final widget = Text('Navigation error!!');
+        const widget = Text('Navigation error!!');
         return MaterialPageRoute(
           builder: (context) => widget,
         );

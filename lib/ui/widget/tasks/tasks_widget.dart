@@ -35,16 +35,10 @@ class TasksWidgetState extends State<TasksWidget> {
   @override
   Widget build(BuildContext context) {
     final model = _model;
-    if (model != null) {
-      return TasksWidgetModelProvider(
-        model: model,
-        child: const _TasksWidgetBody(),
-      );
-    } else {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    }
+    return TasksWidgetModelProvider(
+      model: model,
+      child: const _TasksWidgetBody(),
+    );
   }
 }
 

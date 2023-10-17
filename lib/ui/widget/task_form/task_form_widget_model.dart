@@ -6,7 +6,7 @@ import 'package:todo_list/domain/entity/task.dart';
 class TaskFormWidgetModel {
   var taskName = '';
   int groupKey;
-  TaskFormWidgetModel({required this.groupKey}) {}
+  TaskFormWidgetModel({required this.groupKey});
 
   void saveTask(BuildContext context) async {
     if (taskName.isEmpty) return;

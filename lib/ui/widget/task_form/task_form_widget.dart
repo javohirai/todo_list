@@ -34,7 +34,7 @@ class TaskFormWidgetState extends State<TaskFormWidget> {
   @override
   Widget build(BuildContext context) {
     return TaskFormWidgetModelProvider(
-      model: _model!,
+      model: _model,
       child: const _TaskFormWidgetBody(),
     );
   }
