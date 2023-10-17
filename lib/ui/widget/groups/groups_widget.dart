@@ -29,9 +29,8 @@ class _GroupsWidgetBody extends StatelessWidget {
       appBar: AppBar(title: const Text('Todo List')),
       body: const SafeArea(child: _GroupList()),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => GroupsWidgetModelProvider.read(context)
-            ?.model
-            .showForm(context),
+        onPressed: () =>
+            GroupsWidgetModelProvider.read(context)?.model.showForm(context),
         child: const Icon(Icons.add),
       ),
     );
@@ -42,7 +41,8 @@ class _GroupList extends StatelessWidget {
   const _GroupList();
   @override
   Widget build(BuildContext context) {
-    final groupCount = GroupsWidgetModelProvider.watch(context)?.model.groups.length ?? 0;
+    final groupCount =
+        GroupsWidgetModelProvider.watch(context)?.model.groups.length ?? 0;
     return ListView.separated(
       itemCount: groupCount,
       itemBuilder: (context, index) {

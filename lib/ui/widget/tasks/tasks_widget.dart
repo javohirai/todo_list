@@ -47,6 +47,7 @@ class TasksWidgetState extends State<TasksWidget> {
       child: const _TasksWidgetBody(),
     );
   }
+
 }
 
 class _TasksWidgetBody extends StatelessWidget {
